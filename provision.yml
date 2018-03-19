@@ -1,0 +1,10 @@
+---
+# TODO: install python2 using cloud-init
+- name: Install Ansible prerequisites
+  hosts: all
+  become: true
+  become_user: root
+  gather_facts: false
+  tasks:
+    - name: Install python2
+      raw: sudo apt-get -y install python-simplejson
