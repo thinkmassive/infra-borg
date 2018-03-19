@@ -1,0 +1,8 @@
+---
+- name: Manage common configuration
+  hosts: all
+  become: true
+  become_user: root
+  roles:
+    - { role: ubuntu, tags: packages }
+#    - { role: sshd, tags: sshd }

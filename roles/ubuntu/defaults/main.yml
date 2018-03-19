@@ -1,0 +1,6 @@
+---
+common_packages:
+  - htop
+  - tmux
+  - vim
+  - haveged
