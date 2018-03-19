@@ -1,0 +1,15 @@
+---
+borg_user: backup
+borg_group: backup
+borg_home: /home/{{ borg_user }}
+borg_pool: "{{ borg_home }}/repos"
+# TODO: fix below
+borg_auth_users:
+  - host: "localhost"
+    key: "{{ lookup('file', 'authorized_keys/backup') }}"
+borg_passphrase: INSECURE_PASSPHRASE
+
+# !! WARNING:
+# !! borg_repo_force_init=true
+# !! WILL DESTROY YOUR EXISTING REPO!
+borg_repo_force_init: false

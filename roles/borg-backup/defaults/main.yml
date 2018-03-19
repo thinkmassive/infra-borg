@@ -1,0 +1,7 @@
+---
+#borg_host: "{{ hostvars.borg-repo.ansible_ssh_host }}"
+#borg_host: "{{ hostvars['borg-repo']['ansible_default_ipv4']['address'] }}"
+borg_host: "{{ hostvars['borg-repo']['ansible_host'] }}"
+borg_user: backup
+#borg_repo_path: /mnt/backup
+borg_passphrase: INSECURE_PASSPHRASE

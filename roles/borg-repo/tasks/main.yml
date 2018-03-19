@@ -1,0 +1,39 @@
+---
+- import_tasks: install.yml
+  tags: borg-repo_install
+
+- import_tasks: user.yml
+  tags: borg-repo_user
+
+- import_tasks: clients.yml
+  tags: borg-repo_clients
+
+
+      ##- debug: msg="{{ item }}"
+      ##  with_items:
+      ##    - "borg_passphrase: {{ borg_passphrase }}"
+      ##    - "borg_repo_force_init: {{ borg_repo_force_init }}"
+      #
+      #- name: BORG-REPO | Delete existing repository
+      #  file:
+      #    path: "{{ borg_pool }}"
+      #    state: absent
+      #  when: borg_repo_force_init|bool == true
+      #
+      #- name: BORG-REPO | Get borg repo status
+      #  shell: borg list {{ borg_pool }}
+      #  environment:
+      #    BORG_PASSPHRASE: "{{ borg_passphrase }}"
+      #  ignore_errors: true
+      #  register: borg_repo_status
+      #  tags: borg-init
+      #
+      #- debug: var=borg_repo_status
+
+  #- name: BORG-REPO | Initialize a new borg repository
+  #  shell: borg init {{ borg_pool }}
+  #  environment:
+  #    BORG_PASSPHRASE: "{{ borg_passphrase }}"
+  #  ignore_errors: true
+  #  tags: borg-init
+

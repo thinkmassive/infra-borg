@@ -1,0 +1,12 @@
+---
+- name: Manage borg-repo
+  hosts: borg-repo
+  become: false
+  roles:
+    - { role: borg-repo, tags: borg-repo }
+
+- name: Manage borg-clients
+  hosts: all
+  become: false
+  roles:
+    - { role: borg-backup, tags: borg-backup }

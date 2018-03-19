@@ -1,0 +1,36 @@
+---
+
+- debug: var=hostvars['borg-repo']
+
+- name: Install borg backup packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - borgbackup
+    - borgbackup-doc
+
+- name: Load borg private key
+  include_vars: 
+    file: vault/borg_ssh_private_key
+    name: vault
+  tags: vault
+
+- name: Copy SSH keys
+  copy:
+    content: "{{ vault.borg_ssh_private_key }}"
+    #src: "{{ lookup('file', 'vault/borg_ssh_private_key' ) }}"
+    dest: /root/.ssh/id_rsa
+    owner: root
+    group: root
+    mode: 0400
+
+- name: Initialize backup repo
+  shell: borg init {{ borg_user }}@{{ borg_host }}:{{ inventory_hostname }}
+  environment:
+    BORG_PASSPHRASE: "{{ borg_passphrase }}"
+
+    #- name: Install backup script
+    #  template:
+    #    src: backup.sh.j2
+    #    dest: /root/backup.sh
